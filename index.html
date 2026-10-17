@@ -1,1 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Print Lab Tycoon</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e2e, #11111b);
+            color: #cdd6f4;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #313244;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+        h1 { color: #89b4fa; }
+        button {
+            background-color: #a6e3a1;
+            color: #11111b;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+        }
+        button:hover { background-color: #94e2d5; transform: scale(1.05); }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: #181825;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🖨️ 3D Print Lab Tycoon</h1>
+        <p>Willkommen in deiner eigenen 3D-Druck-Werkstatt! Starte deine ersten Drucke und werde der beste Maker.</p>
+        
+        <div class="stats">
+            <div>💰 Geld: <span id="money">100</span> €</div>
+            <div>🧵 Filament: <span id="filament">500</span> g</div>
+        </div>
+
+        <p id="status">Status: Bereit für den ersten Druck!</p>
+        
+        <button onclick="startPrint()">Druck starten (50g PLA)</button>
+    </div>
+
+    <script>
+        let money = 100;
+        let filament = 500;
+
+        function startPrint() {
+            if (filament < 50) {
+                alert("Nicht genug Filament! Bitte erst neues kaufen.");
+                return;
+            }
+            filament -= 50;
+            document.getElementById('filament').innerText = filament;
+            document.getElementById('status').innerText = "🖨️ Druck läuft... bssssst...";
+            
+            setTimeout(() => {
+                money += 75;
+                document.getElementById('money').innerText = money;
+                document.getElementById('status').innerText = "✅ Druck erfolgreich abgeschlossen! (+75€)";
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
 
